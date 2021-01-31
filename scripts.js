@@ -10,24 +10,18 @@ const Modal = {
         }
 };
 
+const Storage = {
+        get() {
+                return JSON.parse(localStorage.getItem("dev.finances:transaction")) || [];
+        },
+
+        set(transactions){
+                localStorage.setItem("dev.finances:transactions", JSON.stringify(transactions));
+        }
+};
+
 const Transaction = {
-        all:  [
-                {
-                        description: "Luz",
-                        amount: -50000, //500,00
-                        date: "23/01/2021"
-                },
-                {
-                        description: "Website",
-                        amount: 500000, //5000,00
-                        date: "23/01/2021"
-                },
-                {
-                        description: "Internet",
-                        amount: -20000, //200,00
-                        date: "23/01/2021"
-                }
-        ],
+        all:  Storage.get(),
 
         add(transaction) {
                 Transaction.all.push(transaction);
@@ -195,6 +189,8 @@ const App = {
                 });
                 
                 DOM.updateBalance();
+
+                Storage.set(Transaction.all);
         },
 
         reload() {
