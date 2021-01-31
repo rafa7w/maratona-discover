@@ -67,6 +67,7 @@ button {
         padding: 0;
         border-radius: .25rem;
         cursor: pointer;
+        transition: background 300ms;
 }
 
 button:hover {
@@ -88,6 +89,7 @@ button:hover {
         justify-content: center;
         align-items: center;
         opacity: .6;
+        transition: opacity 200ms;
 }
 
 .button.cancel:hover {
@@ -97,13 +99,14 @@ button:hover {
 /* Header =====================*/
 header {
         background: #2d4a22;
-        padding: 2rem 0 10rem;
+        padding: 2rem 0 15rem;
         text-align: center;
+        margin-bottom: 5rem;
 }
 
-#logo {
-        color: #fff;
-        font-weight: 100;
+header img {
+        position: relative;
+        top: 3rem;
 }
 
 /* Balance =====================*/
@@ -122,6 +125,7 @@ header {
         border-radius: .25rem;
         margin-bottom: 2rem;
         color: var(--dark-blue);
+        box-shadow: .4px .4px 20px black;
 }
 
 .card h3 {
