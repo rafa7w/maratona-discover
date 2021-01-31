@@ -3,6 +3,7 @@ const Modal = {
                 // Abrir modal (adicionar class active ao modal)
                 document.querySelector(".modal-overlay").classList.add("active");          
         },
+
         close() {
                 //Fechar modal (remover class active do modal)
                 document.querySelector(".modal-overlay").classList.remove("active");          
@@ -31,14 +32,34 @@ const transactions = [
 ];
 
 const Transaction = {
-        incomes() {
-                // somar as entradas
+        all: transactions,
+
+        incomes() {        
+                let income = 0;
+
+                Transaction.all.forEach(transaction => {
+                        if (transaction.amount > 0) {
+                                income += transaction.amount;
+                        }
+                });
+
+                return income;
         },
+
         expenses() {
-                // somar as saídas
+                let expense = 0;
+
+                Transaction.all.forEach(transaction => {
+                        if (transaction.amount < 0) {
+                                expense += transaction.amount;
+                        }
+                });
+
+                return expense;
         },
+
         total() {
-                // saldo entre entradas e saídas
+                return Transaction.incomes() + Transaction.expenses();
         }
 };
 
@@ -51,6 +72,7 @@ const DOM = {
                 tr.innerHTML = DOM.innerHTMLTransaction(transaction);
                 DOM.transactionsContainer.appendChild(tr);
         },
+
         innerHTMLTransaction(transaction) {
                 const CSSClass = transaction.amount > 0 ? "income" : "expense";
                 const amount = Utils.formatCurrency(transaction.amount);
@@ -62,6 +84,13 @@ const DOM = {
                         <td><img src="./assets/minus.svg" alt="Remove Transaction"></td>
                 `
                 return html;
+        },
+
+        updateBalance() {
+                document.getElementById("incomeDisplay").innerHTML = Utils.formatCurrency(Transaction.incomes());
+                document.getElementById("expenseDisplay").innerHTML = Utils.formatCurrency(Transaction.expenses());
+                document.getElementById("totalDisplay").innerHTML = Utils.formatCurrency(Transaction.total());
+
         }
 };
 
@@ -83,3 +112,4 @@ transactions.forEach(transaction => {
         DOM.addTransaction(transaction);
 });
 
+DOM.updateBalance();
