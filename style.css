@@ -10,6 +10,7 @@
         margin: 0;
         padding: 0;
         box-sizing: border-box;
+        font-family: 'Poppins', sans-serif;
 }
 
 html {
@@ -18,7 +19,7 @@ html {
 
 body {
         background: #f0f2f5;
-        font-family: 'Poppins', sans-serif;
+        /* font-family: 'Poppins', sans-serif; */
 }
 
 /*Mantém o conteúdo visível para os leitores de tela*/
@@ -209,6 +210,7 @@ td.expense {
         justify-content: center;
         opacity: 0;
         visibility: hidden;
+        z-index: 999;
 }
 
 .modal-overlay.active {
@@ -219,6 +221,8 @@ td.expense {
 .modal {
         background: #f0f2f5;
         padding: 2.4rem;
+        position: relative;
+        z-index: 1;
 }
 
 /* Form =====================*/
